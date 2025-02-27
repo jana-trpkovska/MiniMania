@@ -1,0 +1,186 @@
+[gd_scene load_steps=21 format=3 uid="uid://dj045ldxjxw45"]
+
+[ext_resource type="Texture2D" uid="uid://d3r6rtug33anj" path="res://main lobby/textures/grey-ceramic-floor-wall-tiles.jpg" id="1_8h6i8"]
+[ext_resource type="PackedScene" uid="uid://bocpgdwdw6fi5" path="res://main lobby/fence.tscn" id="2_dw5im"]
+[ext_resource type="Shader" path="res://main lobby/portal.gdshader" id="3_vxyon"]
+[ext_resource type="PackedScene" uid="uid://b1wrwwxxaycaw" path="res://main lobby/pillar.tscn" id="4_v65at"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ls08w"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_be237"]
+sky_material = SubResource("ProceduralSkyMaterial_ls08w")
+
+[sub_resource type="Environment" id="Environment_v606i"]
+background_mode = 2
+sky = SubResource("Sky_be237")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2gl5"]
+albedo_texture = ExtResource("1_8h6i8")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7knq7"]
+material = SubResource("StandardMaterial3D_c2gl5")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ur22e"]
+size = Vector3(40, 0.05, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpo7b"]
+albedo_color = Color(0.31802, 0.31802, 0.31802, 1)
+metallic = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_v35eg"]
+material = SubResource("StandardMaterial3D_mpo7b")
+size = Vector3(40, 15, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nj7qe"]
+size = Vector3(40, 15, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovya4"]
+size = Vector3(40, 15, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7micp"]
+render_priority = 0
+shader = ExtResource("3_vxyon")
+shader_parameter/color = Vector4(0, 0, 1, 0.3)
+shader_parameter/glow_intensity = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gp7y3"]
+material = SubResource("ShaderMaterial_7micp")
+top_radius = 1.5
+bottom_radius = 1.5
+height = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q04ny"]
+render_priority = 0
+shader = ExtResource("3_vxyon")
+shader_parameter/color = Vector4(1, 0, 0, 0.3)
+shader_parameter/glow_intensity = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tywwo"]
+material = SubResource("ShaderMaterial_q04ny")
+top_radius = 1.5
+bottom_radius = 1.5
+height = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xielx"]
+render_priority = 0
+shader = ExtResource("3_vxyon")
+shader_parameter/color = Vector4(0, 1, 0, 0.3)
+shader_parameter/glow_intensity = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ruter"]
+material = SubResource("ShaderMaterial_xielx")
+top_radius = 1.5
+bottom_radius = 1.5
+height = 5.0
+
+[node name="MainLobby" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v606i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("PlaneMesh_7knq7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_ur22e")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -20)
+mesh = SubResource("BoxMesh_v35eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("BoxShape3D_nj7qe")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 7, 0)
+mesh = SubResource("BoxMesh_v35eg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2/StaticBody3D"]
+shape = SubResource("BoxShape3D_ovya4")
+
+[node name="fence2" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7297, -0.5, 19)
+
+[node name="fence3" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7027, -0.5, 19)
+
+[node name="fence4" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6419, -0.5, 19)
+
+[node name="fence5" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.58884, -0.5, 19)
+
+[node name="fence6" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54951, -0.5, 19)
+
+[node name="fence7" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48268, -0.5, 19)
+
+[node name="fence8" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.52415, -0.5, 19)
+
+[node name="fence9" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5609, -0.5, 19)
+
+[node name="fence10" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5892, -0.5, 19)
+
+[node name="fence11" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, 15.8101)
+
+[node name="fence12" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, 11.6134)
+
+[node name="fence13" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, 7.44854)
+
+[node name="fence14" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, 3.20196)
+
+[node name="fence15" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, -0.985645)
+
+[node name="fence16" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, -5.14912)
+
+[node name="fence17" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, -9.22683)
+
+[node name="fence18" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, -13.3516)
+
+[node name="fence19" parent="." instance=ExtResource("2_dw5im")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, -17.6241)
+
+[node name="BluePortal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16.5243)
+mesh = SubResource("CylinderMesh_gp7y3")
+
+[node name="RedPortal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35421, 2, -15.9566)
+mesh = SubResource("CylinderMesh_tywwo")
+
+[node name="GreenPortal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.549, 2, -15.7545)
+mesh = SubResource("CylinderMesh_ruter")
+
+[node name="pillar3" parent="." instance=ExtResource("4_v65at")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.737, -0.5, 19)
