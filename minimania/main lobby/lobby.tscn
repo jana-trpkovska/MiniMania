@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dj045ldxjxw45"]
+[gd_scene load_steps=28 format=3 uid="uid://dj045ldxjxw45"]
 
 [ext_resource type="Texture2D" uid="uid://d3r6rtug33anj" path="res://main lobby/textures/grey-ceramic-floor-wall-tiles.jpg" id="1_8h6i8"]
+[ext_resource type="PackedScene" uid="uid://cxwfocta1iub7" path="res://main lobby/stairs.tscn" id="2_bnfkj"]
 [ext_resource type="PackedScene" uid="uid://bocpgdwdw6fi5" path="res://main lobby/fence.tscn" id="2_dw5im"]
 [ext_resource type="Shader" path="res://main lobby/portal.gdshader" id="3_vxyon"]
 [ext_resource type="PackedScene" uid="uid://b1wrwwxxaycaw" path="res://main lobby/pillar.tscn" id="4_v65at"]
@@ -43,6 +44,24 @@ size = Vector3(40, 15, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ovya4"]
 size = Vector3(40, 15, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sa6fj"]
+albedo_color = Color(0.529412, 0.584314, 0.615686, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hwmjx"]
+material = SubResource("StandardMaterial3D_sa6fj")
+size = Vector3(6.5, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_32t0b"]
+size = Vector3(6.5, 4, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ied8"]
+material = SubResource("StandardMaterial3D_sa6fj")
+size = Vector3(6.5, 4, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0qpeu"]
+material = SubResource("StandardMaterial3D_sa6fj")
+size = Vector3(6.5, 4, 6)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7micp"]
 render_priority = 0
 shader = ExtResource("3_vxyon")
@@ -51,9 +70,13 @@ shader_parameter/glow_intensity = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gp7y3"]
 material = SubResource("ShaderMaterial_7micp")
-top_radius = 1.5
-bottom_radius = 1.5
-height = 5.0
+top_radius = 2.0
+bottom_radius = 2.0
+height = 9.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cu314"]
+height = 9.0
+radius = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q04ny"]
 render_priority = 0
@@ -63,9 +86,9 @@ shader_parameter/glow_intensity = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tywwo"]
 material = SubResource("ShaderMaterial_q04ny")
-top_radius = 1.5
-bottom_radius = 1.5
-height = 5.0
+top_radius = 2.0
+bottom_radius = 2.0
+height = 9.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xielx"]
 render_priority = 0
@@ -75,9 +98,9 @@ shader_parameter/glow_intensity = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ruter"]
 material = SubResource("ShaderMaterial_xielx")
-top_radius = 1.5
-bottom_radius = 1.5
-height = 5.0
+top_radius = 2.0
+bottom_radius = 2.0
+height = 9.0
 
 [node name="MainLobby" type="Node3D"]
 
@@ -115,6 +138,59 @@ mesh = SubResource("BoxMesh_v35eg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2/StaticBody3D"]
 shape = SubResource("BoxShape3D_ovya4")
+
+[node name="Platform" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -16.7)
+mesh = SubResource("BoxMesh_hwmjx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/StaticBody3D"]
+shape = SubResource("BoxShape3D_32t0b")
+
+[node name="Platform2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.7, 1.5, -8.4)
+mesh = SubResource("BoxMesh_2ied8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2/StaticBody3D"]
+shape = SubResource("BoxShape3D_32t0b")
+
+[node name="Platform3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.7, 1.5, 8.4)
+mesh = SubResource("BoxMesh_0qpeu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platform3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3/StaticBody3D"]
+shape = SubResource("BoxShape3D_32t0b")
+
+[node name="stairs" parent="." instance=ExtResource("2_bnfkj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -13.7)
+
+[node name="stairs2" parent="." instance=ExtResource("2_bnfkj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.7, -0.5, -8.4)
+
+[node name="stairs3" parent="." instance=ExtResource("2_bnfkj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.7, -0.5, 8.4)
+
+[node name="BluePortal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -16.5)
+mesh = SubResource("CylinderMesh_gp7y3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BluePortal"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BluePortal/StaticBody3D"]
+shape = SubResource("CylinderShape3D_cu314")
+
+[node name="RedPortal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7, 8, -8.4)
+mesh = SubResource("CylinderMesh_tywwo")
+
+[node name="GreenPortal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7, 8, 8.4)
+mesh = SubResource("CylinderMesh_ruter")
 
 [node name="fence2" parent="." instance=ExtResource("2_dw5im")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7297, -0.5, 19)
@@ -170,17 +246,5 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.73
 [node name="fence19" parent="." instance=ExtResource("2_dw5im")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.737, -0.5, -17.6241)
 
-[node name="BluePortal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16.5243)
-mesh = SubResource("CylinderMesh_gp7y3")
-
-[node name="RedPortal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35421, 2, -15.9566)
-mesh = SubResource("CylinderMesh_tywwo")
-
-[node name="GreenPortal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.549, 2, -15.7545)
-mesh = SubResource("CylinderMesh_ruter")
-
-[node name="pillar3" parent="." instance=ExtResource("4_v65at")]
+[node name="pillar" parent="." instance=ExtResource("4_v65at")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.737, -0.5, 19)
