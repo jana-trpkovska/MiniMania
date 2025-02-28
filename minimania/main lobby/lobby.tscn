@@ -1,10 +1,24 @@
-[gd_scene load_steps=28 format=3 uid="uid://dj045ldxjxw45"]
+[gd_scene load_steps=42 format=3 uid="uid://dj045ldxjxw45"]
 
 [ext_resource type="Texture2D" uid="uid://d3r6rtug33anj" path="res://main lobby/textures/grey-ceramic-floor-wall-tiles.jpg" id="1_8h6i8"]
 [ext_resource type="PackedScene" uid="uid://cxwfocta1iub7" path="res://main lobby/stairs.tscn" id="2_bnfkj"]
 [ext_resource type="PackedScene" uid="uid://bocpgdwdw6fi5" path="res://main lobby/fence.tscn" id="2_dw5im"]
 [ext_resource type="Shader" path="res://main lobby/portal.gdshader" id="3_vxyon"]
 [ext_resource type="PackedScene" uid="uid://b1wrwwxxaycaw" path="res://main lobby/pillar.tscn" id="4_v65at"]
+[ext_resource type="PackedScene" uid="uid://yigagtocyabr" path="res://main lobby/models/gltf/banner_blue.gltf" id="6_8ih1p"]
+[ext_resource type="PackedScene" uid="uid://da5g7dwoxdo34" path="res://main lobby/models/gltf/banner_patternA_blue.gltf" id="7_ggn8x"]
+[ext_resource type="PackedScene" uid="uid://ul8u2j8kvjtv" path="res://main lobby/models/gltf/banner_shield_blue.gltf" id="8_i2cpb"]
+[ext_resource type="PackedScene" uid="uid://bpqpmyyhsnwh7" path="res://main lobby/models/gltf/banner_red.gltf" id="9_g8id7"]
+[ext_resource type="PackedScene" uid="uid://xe3vp8bupwyq" path="res://main lobby/models/gltf/banner_patternA_red.gltf" id="10_lnkqo"]
+[ext_resource type="PackedScene" uid="uid://fhwk3pi0n6g2" path="res://main lobby/models/gltf/banner_shield_red.gltf" id="11_q1hja"]
+[ext_resource type="PackedScene" uid="uid://dhhiuw4jagfgb" path="res://main lobby/models/gltf/banner_green.gltf" id="12_vaek7"]
+[ext_resource type="PackedScene" uid="uid://c2plw4p35jh6b" path="res://main lobby/models/gltf/banner_patternA_green.gltf" id="13_11lug"]
+[ext_resource type="PackedScene" uid="uid://dfpoawihhe6yv" path="res://main lobby/models/gltf/banner_shield_green.gltf" id="14_bce8c"]
+[ext_resource type="PackedScene" uid="uid://cviuahxuy5gvf" path="res://main lobby/models/gltf/banner_triple_blue.gltf" id="15_wkd0l"]
+[ext_resource type="PackedScene" uid="uid://cgfjjbj6gic7k" path="res://main lobby/models/gltf/banner_triple_red.gltf" id="16_ko8lw"]
+[ext_resource type="PackedScene" uid="uid://u0jb01k68yto" path="res://main lobby/models/gltf/banner_triple_green.gltf" id="17_35x5y"]
+[ext_resource type="PackedScene" uid="uid://f0l2btmi2mq7" path="res://main lobby/crates_stacked.tscn" id="18_36g5k"]
+[ext_resource type="PackedScene" uid="uid://ceqtud50jy00w" path="res://main lobby/barrel_large_decorated.tscn" id="19_8271l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ls08w"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -140,7 +154,7 @@ mesh = SubResource("BoxMesh_v35eg")
 shape = SubResource("BoxShape3D_ovya4")
 
 [node name="Platform" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -16.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.5, -16.7)
 mesh = SubResource("BoxMesh_hwmjx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Platform"]
@@ -158,7 +172,7 @@ mesh = SubResource("BoxMesh_2ied8")
 shape = SubResource("BoxShape3D_32t0b")
 
 [node name="Platform3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.7, 1.5, 8.4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.7, 1.5, 10)
 mesh = SubResource("BoxMesh_0qpeu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Platform3"]
@@ -167,16 +181,16 @@ mesh = SubResource("BoxMesh_0qpeu")
 shape = SubResource("BoxShape3D_32t0b")
 
 [node name="stairs" parent="." instance=ExtResource("2_bnfkj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -13.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.5, -13.7)
 
 [node name="stairs2" parent="." instance=ExtResource("2_bnfkj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.7, -0.5, -8.4)
 
 [node name="stairs3" parent="." instance=ExtResource("2_bnfkj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.7, -0.5, 8.4)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.7, -0.5, 10)
 
 [node name="BluePortal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -16.5)
 mesh = SubResource("CylinderMesh_gp7y3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BluePortal"]
@@ -189,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7, 8, -8.4)
 mesh = SubResource("CylinderMesh_tywwo")
 
 [node name="GreenPortal" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7, 8, 8.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.7, 8, 10)
 mesh = SubResource("CylinderMesh_ruter")
 
 [node name="fence2" parent="." instance=ExtResource("2_dw5im")]
@@ -248,3 +262,72 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -17.73
 
 [node name="pillar" parent="." instance=ExtResource("4_v65at")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.737, -0.5, 19)
+
+[node name="banner_blue2" parent="." instance=ExtResource("6_8ih1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 6.5, -19.7)
+
+[node name="banner_blue3" parent="." instance=ExtResource("6_8ih1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 6.5, -19.7)
+
+[node name="banner_patternA_blue2" parent="." instance=ExtResource("7_ggn8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 5, -19.7)
+
+[node name="banner_patternA_blue3" parent="." instance=ExtResource("7_ggn8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 5, -19.7)
+
+[node name="banner_shield_blue2" parent="." instance=ExtResource("8_i2cpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 6.5, -19.7)
+
+[node name="banner_shield_blue3" parent="." instance=ExtResource("8_i2cpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 6.5, -19.7)
+
+[node name="banner_red2" parent="." instance=ExtResource("9_g8id7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 6.5, -12.5)
+
+[node name="banner_red3" parent="." instance=ExtResource("9_g8id7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 6.5, -4.8)
+
+[node name="banner_patternA_red2" parent="." instance=ExtResource("10_lnkqo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 5, -14.5)
+
+[node name="banner_patternA_red3" parent="." instance=ExtResource("10_lnkqo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 5, -2.8)
+
+[node name="banner_shield_red2" parent="." instance=ExtResource("11_q1hja")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 6.5, -16.5)
+
+[node name="banner_shield_red3" parent="." instance=ExtResource("11_q1hja")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 6.5, -0.8)
+
+[node name="banner_green2" parent="." instance=ExtResource("12_vaek7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 6.5, 6)
+
+[node name="banner_green3" parent="." instance=ExtResource("12_vaek7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 6.5, 14)
+
+[node name="banner_patternA_green2" parent="." instance=ExtResource("13_11lug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 5, 4)
+
+[node name="banner_patternA_green3" parent="." instance=ExtResource("13_11lug")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7, 5, 16)
+
+[node name="banner_shield_green2" parent="." instance=ExtResource("14_bce8c")]
+transform = Transform3D(-4.37114e-08, 0.0331552, -0.99945, 0, 0.99945, 0.0331552, 1, 1.44926e-09, -4.36874e-08, 19.7, 6.5, 2)
+
+[node name="banner_shield_green3" parent="." instance=ExtResource("14_bce8c")]
+transform = Transform3D(-4.37114e-08, 0.0331552, -0.99945, 0, 0.99945, 0.0331552, 1, 1.44926e-09, -4.36874e-08, 19.7, 6.5, 18)
+
+[node name="banner_triple_blue2" parent="." instance=ExtResource("15_wkd0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 6.5, -19.7)
+
+[node name="banner_triple_red2" parent="." instance=ExtResource("16_ko8lw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 6.5, -19.7)
+
+[node name="banner_triple_green2" parent="." instance=ExtResource("17_35x5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 5, -19.7)
+
+[node name="crates_stacked2" parent="." instance=ExtResource("18_36g5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3944, 0, -18.2235)
+
+[node name="barrel_large_decorated2" parent="." instance=ExtResource("19_8271l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6796, 0, -18.223)
